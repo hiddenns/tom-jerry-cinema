@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>Tom & Jerry</title>
+    <link rel="stylesheet" href="" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<header>
+    <div class="header_img">
+        <img class="img_tom_and_jerry_header"
+             th:src="@{https://www.bravado.de/assets/wlg_images/50a6124b131ff290fad125f79cbae51c2d39192324c6d4800af8ca0f6178273a9eb0f576eedf48b902e8509e0bf5e7ff_st_banner_tomjerry.jpg}">
+    </div>
+</header>
+
+<div class="sidebar">
+    <div class="content-season_sidebar">
+        <h4 class="sidebar_text-seasons">Seasons</h4>
+        <div class="select_season">
+            <form class="form_change-season" th:action="@{/tom&jerry}" method="get" modelAttribute="season">
+                <div th:each="season: ${allSeasons}">
+                    <button id="season_button" th:onClick="selectSeason([[${season}]])" class="change_season_btn"
+                            name="season"
+                            th:value="${season.number}" th:text="${season.number}" type="submit"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+
+    <div class="series_buttons">
+        <div class="grid_buttons">
+            <div th:each="i: ${currentSeason.seriesList}">
+                <form id="select_series-form" th:action="@{/tom&jerry}" method="get" th:object="${SelectSeriesDto}">
+                    <button id="series_button" th:onClick="selectSeries([[${i}]])"
+                            class="series_button glow-on-hover" name="series"
+                            th:value="${i.pos}" th:text="${i.name}" type="submit"></button>
+                    <input name="season"
+                           th:value="${currentSeason.number}" style="opacity: 0; display:none;" type="text"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br size="3" height="3px" style="height=2px; background-color: #000; weight: 100%">
+
+    <img th:src="@{https://pngimg.com/uploads/tom_and_jerry/tom_and_jerry_PNG56.png}" class="jerry_left-img">
+
+    <p id="name-series_title" class="name_series" text="">Name</p>
+
+    <img th:src="@{img/tom&jerry1.png}" class="tom_jerry_right-img">
+
+    <video id="video-player" class="video_player" th:src="@{video/1/1}" width="720px" height="480px"
+           controls preload="https://www.meme-arsenal.com/memes/c5fe14cd6620c4b8d568920056ec2458.jpg"
+           poster="https://imgr.cineserie.com/2021/05/tom-et-jerry-peter-dinklage-au-casting-du-film.jpg?imgeng=/f_jpg/cmpr_0/w_660/h_370/m_cropbox&ver=1">
+    </video>
+
+
+<!--    th:onsubmit="return sendRequestBackBtn([[${allMovies}]]);"-->
+    <div class="navigation_btns">
+        <div class="navigation_btn-back change_series-btn">
+            <form th:action="@{/tom&jerry}" class="navigation_form" th:object="${SelectSeriesDto}">
+                <button id="btn-back" th:onClick="clickNextBtn([[${allMovies}]])" name="season" class="btn-back navigation_btn"
+                       th:value="${currentSeason.number}" type="submit" th:text="BACK">
+<!--                <input name="series"-->
+<!--                       th:value="${currentSeason.number}" style="opacity: 0; display:none;" type="text"></button>-->
+            </form>
+        </div>
+
+        <div class="navigation_btn-next">
+            <form th:action="@{/tom&jerry}" class="navigation_form" th:object="${SelectSeriesDto}">
+                <button id="btn-next" th:onClick="clickNextBtn([[${allSeasons}]])" class="btn-next navigation_btn"
+                       th:value="NEXT" th:text="NEXT" type="submit">
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <p>Enjoy the movie!</p>
+</footer>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript" th:src="@{/js/cur.js}"></script>
+
+</body>
+</html>

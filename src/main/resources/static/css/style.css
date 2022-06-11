@@ -1,0 +1,214 @@
+/* @import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap'); */
+
+body, html {
+    background-image: linear-gradient(to right, rgb(44,44,44) ,rgb(66, 66, 66));    
+    font-family: 'Lato', sans-serif;
+}
+
+.series_buttons{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-left: 10%;
+}
+
+.series_button {
+    margin-top: 10px;
+    background: grey;
+    width: 100%;
+}
+
+.video_player{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.navigation_btns {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 18%;
+    display: grid;
+    grid-template-columns: 250px 250px;
+    grid-column-gap: 50%;
+}
+
+.navigation_btn-next {
+    float: right;
+    display: block;
+}
+
+.navigation_btn {
+    font-weight: 600;
+    width: 100px;
+    height: 35px;
+    background-color: rgb(65 100 116);
+    border: 0;
+    border-radius: 20%;
+    box-shadow: 2px 2px 5px #000;
+    transition: all 0.4s ease
+}
+
+.navigation_btn:hover {
+    background-color: #bfa739;
+    color: #fff;
+}
+
+.header_img{
+    text-align: -webkit-center;
+    width: 100%;
+    box-shadow: 10px 5px 5px #000;
+}
+
+.img_tom_and_jerry_header{
+    width: 95%;
+    right: 0;
+    margin-left: 5%;
+    align-items: end;
+}
+
+.sidebar {
+    height: 100%;
+    width: 120px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 5%;
+    background-color: rgb(35, 35, 35);
+    box-shadow: 3px 3px 7px #000;
+}
+
+.sidebar div {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 24px;
+    display: block;
+    border: 1px 1px 1px 1px white;
+}
+
+.select_season{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-season_sidebar{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.change_season_btn {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    margin-top: 5%;
+    transition: all 0.15s ease
+}
+
+.change_season_btn:hover {
+    width: 65px;
+    height: 65px;
+    background-color: #bfa739;
+}
+
+.sidebar_text-seasons {
+    color: aliceblue;
+}
+
+.tom_jerry_right-img{
+    right: 0;
+    position: absolute;
+    width: 22%;
+    opacity: 0.8;
+}
+
+.jerry_left-img{
+    width: 17%;
+    position: absolute;
+    margin-top: 10%;
+    margin-left: -12px;
+    opacity: 0.8;
+}
+
+.grid_buttons {
+    display: grid;
+    grid-template-columns: 250px 250px 250px 250px;
+    grid-column-gap: 10px;
+}
+
+.name_series {
+    font-size: 24px;
+    color: aliceblue;
+    font-weight: 800;
+    margin-left: 10%;
+    margin-top: 30px;
+    text-shadow: 1px 2px 2px #000;
+}
+
+.glow-on-hover {
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.footer {
+    margin-top: 80px;
+    text-align: center;
+    background-color: #2e2e2e;
+    color: #fff;
+    width: 100%;
+    height: 40px;
+}
