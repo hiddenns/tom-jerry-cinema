@@ -18,16 +18,6 @@ public class HomeController {
         model.addAttribute("allSeasons", streamingService.getAllSeasons());
     }
 
-//    @RequestMapping("/tom&jerry")
-//    public String showHome( @ModelAttribute("season") String season, Model model) {
-//        System.out.println("controller home season: " + season);
-//
-//        if (season.equals("")) season = "1";
-//
-//        model.addAttribute("currentSeason", streamingService.getAllSeasons().get(Integer.parseInt(season)-1));
-//        return "home";
-//    }
-
     @RequestMapping("/tom&jerry")
     public String showHome(@ModelAttribute("season") SelectSeriesDto season, Model model) {
         System.out.println("controller home season: " + season);
@@ -37,7 +27,8 @@ public class HomeController {
             season.setSeason("1");
         }
 
-        model.addAttribute("currentSeason", streamingService.getAllSeasons().get(Integer.parseInt(season.getSeason())-1));
+        model.addAttribute("currentSeason",
+                streamingService.getAllSeasons().get(Integer.parseInt(season.getSeason())-1));
         return "home";
     }
 
