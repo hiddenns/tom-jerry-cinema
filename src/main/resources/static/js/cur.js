@@ -8,6 +8,8 @@ var currentSeries = localStorage.getItem(SERIES_KEY);  // Структура
 var currentSeason = localStorage.getItem(SEASON_KEY);
 var currentTitle = localStorage.getItem(TITLE_KEY);
 
+var seasonSize = document.querySelector('#data_season').value;
+
 if((currentSeason == null) && (currentSeries == null)){
     localStorage.setItem(SERIES_KEY, 1);
     localStorage.setItem(SEASON_KEY, 1);
@@ -29,6 +31,7 @@ var backBtn = document.getElementById("btn-back");
 var nextBtn = document.getElementById("btn-next");
 
 checkFirstSeries();
+checkLastSeries();
 
 function checkFirstSeries(){
     if (currentSeries == 1) {
@@ -38,9 +41,11 @@ function checkFirstSeries(){
 }
 
 function checkLastSeries(){
-    if (currentSeries == 1) {
-//        document.getElementById("btn-back").disabled = true;
-//        document.getElementById("btn-back").style.opacity = 0;
+//    alert(seasonObj.length())
+//    console.log(seasonObj.length);
+    if (currentSeries == seasonSize) {
+        document.getElementById("btn-next").disabled = true;
+        document.getElementById("btn-next").style.opacity = 0;
     }
 }
 
@@ -56,25 +61,18 @@ function selectSeason(season) {
     localStorage.setItem(TITLE_KEY, season.seriesList[localStorage.getItem(SERIES_KEY)-1].name);
 }
 
-function sendRequestNextBtn(allMovies){
-     localStorage.setItem(SERIES_KEY, parseInt(currentSeries) + 1);
-     localStorage.setItem(TITLE_KEY, allMovies[parseInt(currentSeries)].name);
-     return false;
-}
-
-function sendRequestBackBtn(allMovies){
-     currentSeries--;
-     localStorage.setItem(TITLE_KEY, allMovies[parseInt(currentSeries)-1].name);
-     localStorage.setItem(SERIES_KEY, parseInt(currentSeries));
-     return false;
-}
-
 function clickNextBtn(allMovies){
      var curr = allMovies[currentSeason-1].seriesList[currentSeries];
-     alert(curr.name);
      localStorage.setItem(SERIES_KEY, parseInt(currentSeries) + 1);
      localStorage.setItem(TITLE_KEY, curr.name);
-//     alert(localStorage.getItem(TITLE_KEY));
+     localStorage.setItem(SEASON_KEY, curr.season_id);
+}
+
+function clickBackBtn(allMovies){
+     var curr = allMovies[currentSeason-1].seriesList[currentSeries];
+     localStorage.setItem(SERIES_KEY, parseInt(currentSeries) - 1);
+     localStorage.setItem(TITLE_KEY, allMovies[currentSeason-1].seriesList[currentSeries-2].name);
+     localStorage.setItem(SEASON_KEY, curr.season_id);
 }
 
 //function getNameSeries(season, series) {

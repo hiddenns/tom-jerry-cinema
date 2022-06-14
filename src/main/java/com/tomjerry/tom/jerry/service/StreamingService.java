@@ -26,13 +26,13 @@ public class StreamingService {
     private static final String FORMAT = "classpath:videos/season";
     private static final String FORMAT_END = "/%s.mp4";
     private static String currentFormat = FORMAT + 1 + FORMAT_END;
+    //private static final String FORMAT = "classpath:videos/%s.mp4";
 
     public StreamingService(ResourceLoader resourceLoader, StreamingRepository streamingRepository) {
         this.resourceLoader = resourceLoader;
         this.streamingRepository = streamingRepository;
 
     }
-    //private static final String FORMAT = "classpath:videos/%s.mp4";
 
     public Mono<Resource> getVideo(int season, int series){
         Series seriesDto = findSeriesDtoByPos(season, series);
@@ -42,12 +42,10 @@ public class StreamingService {
     }
 
     public List<Season> getAllSeasons(){
-//        return streamingRepository.getAllSeasons();
         return streamingRepository.findAll();
     }
 
     private Series findSeriesDtoByPos(int season, int series){
-//        return streamingRepository.findSeriesBySeason(season, series);
         Series seriesTest = streamingRepository.findSeriesBySeason(season, series);
         System.out.println("Service :" + seriesTest.getSeason_id() + "/" + seriesTest.getPos());
         return seriesTest;

@@ -47,7 +47,7 @@
                             class="series_button glow-on-hover" name="series"
                             th:value="${i.pos}" th:text="${i.name}" type="submit"></button>
                     <input name="season"
-                           th:value="${currentSeason.number}" style="opacity: 0; display:none;" type="text"></button>
+                           th:value="${currentSeason.number}" style="display:none;" type="text"></button>
                 </form>
             </div>
         </div>
@@ -66,22 +66,21 @@
            poster="https://imgr.cineserie.com/2021/05/tom-et-jerry-peter-dinklage-au-casting-du-film.jpg?imgeng=/f_jpg/cmpr_0/w_660/h_370/m_cropbox&ver=1">
     </video>
 
-
-<!--    th:onsubmit="return sendRequestBackBtn([[${allMovies}]]);"-->
+    <!--    th:onsubmit="return sendRequestBackBtn([[${allMovies}]]);"-->
     <div class="navigation_btns">
         <div class="navigation_btn-back change_series-btn">
-            <form th:action="@{/tom&jerry}" class="navigation_form" th:object="${SelectSeriesDto}">
-                <button id="btn-back" th:onClick="clickNextBtn([[${allMovies}]])" name="season" class="btn-back navigation_btn"
-                       th:value="${currentSeason.number}" type="submit" th:text="BACK">
-<!--                <input name="series"-->
-<!--                       th:value="${currentSeason.number}" style="opacity: 0; display:none;" type="text"></button>-->
+            <form th:action="@{/tom&jerry}" class="navigation_form" th:object="${SelectSeriesDto}" method="get">
+                <button id="btn-back" th:onClick="clickBackBtn([[${allSeasons}]])" name="season"
+                        class="btn-back navigation_btn"
+                        th:value="${currentSeason.number}" type="submit" th:text="BACK"></button>
             </form>
         </div>
 
         <div class="navigation_btn-next">
-            <form th:action="@{/tom&jerry}" class="navigation_form" th:object="${SelectSeriesDto}">
+            <form th:action="@{/tom&jerry}" class="navigation_form" th:object="${SelectSeriesDto}" method="get">
                 <button id="btn-next" th:onClick="clickNextBtn([[${allSeasons}]])" class="btn-next navigation_btn"
-                       th:value="NEXT" th:text="NEXT" type="submit">
+                        th:value="${currentSeason.number}" th:text="NEXT" type="submit" name="season"></button>
+
             </form>
         </div>
     </div>
@@ -92,12 +91,13 @@
     <p>Enjoy the movie!</p>
 </footer>
 
+<button style="display: none" id="data_season" th:value="${currentSeason.seriesList.size}"></button>
+
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
         crossorigin="anonymous"></script>
 
 <script type="text/javascript" th:src="@{/js/cur.js}"></script>
-
 </body>
 </html>
