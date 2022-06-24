@@ -41,8 +41,6 @@ function checkFirstSeries(){
 }
 
 function checkLastSeries(){
-//    alert(seasonObj.length())
-//    console.log(seasonObj.length);
     if (currentSeries == seasonSize) {
         document.getElementById("btn-next").disabled = true;
         document.getElementById("btn-next").style.opacity = 0;
@@ -50,7 +48,7 @@ function checkLastSeries(){
 }
 
 function selectSeries(series){
-    localStorage.setItem(TITLE_KEY, series.name);
+    localStorage.setItem(TITLE_KEY, series.description);
     localStorage.setItem(SERIES_KEY, series.pos);
     return false;
 }
@@ -58,20 +56,20 @@ function selectSeries(series){
 function selectSeason(season) {
     localStorage.setItem(SEASON_KEY, season.number);
     localStorage.setItem(SERIES_KEY, 1);
-    localStorage.setItem(TITLE_KEY, season.seriesList[localStorage.getItem(SERIES_KEY)-1].name);
+    localStorage.setItem(TITLE_KEY, season.seriesList[localStorage.getItem(SERIES_KEY)-1].description);
 }
 
 function clickNextBtn(allMovies){
      var curr = allMovies[currentSeason-1].seriesList[currentSeries];
      localStorage.setItem(SERIES_KEY, parseInt(currentSeries) + 1);
-     localStorage.setItem(TITLE_KEY, curr.name);
+     localStorage.setItem(TITLE_KEY, curr.description);
      localStorage.setItem(SEASON_KEY, curr.season_id);
 }
 
 function clickBackBtn(allMovies){
      var curr = allMovies[currentSeason-1].seriesList[currentSeries];
      localStorage.setItem(SERIES_KEY, parseInt(currentSeries) - 1);
-     localStorage.setItem(TITLE_KEY, allMovies[currentSeason-1].seriesList[currentSeries-2].name);
+     localStorage.setItem(TITLE_KEY, allMovies[currentSeason-1].seriesList[currentSeries-2].description);
      localStorage.setItem(SEASON_KEY, curr.season_id);
 }
 

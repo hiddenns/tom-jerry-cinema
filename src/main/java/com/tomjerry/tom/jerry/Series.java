@@ -19,6 +19,7 @@ public class Series {
     private int pos;
     private String path;
     private int season_id;
+    private String description;
 
     public Series(String name, String path, int pos){
         this.name = name;
@@ -26,9 +27,10 @@ public class Series {
         this.pos = pos;
     }
 
-    public Series(String name, String path, int pos, int seasonId){
+    public Series(String name, String description, String path, int pos, int seasonId){
         this.name = name;
         this.path = path;
+        this.description = description;
         this.pos = pos;
         this.season_id = seasonId;
     }

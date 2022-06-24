@@ -45,7 +45,7 @@
                 <form id="select_series-form" th:action="@{/tom&jerry}" method="get" th:object="${SelectSeriesDto}">
                     <button id="series_button" th:onClick="selectSeries([[${i}]])"
                             class="series_button glow-on-hover" name="series"
-                            th:value="${i.pos}" th:text="${i.name}" type="submit"></button>
+                            th:value="${i.pos}" th:text="${i.description}" type="submit"></button>
                     <input name="season"
                            th:value="${currentSeason.number}" style="display:none;" type="text"></button>
                 </form>
