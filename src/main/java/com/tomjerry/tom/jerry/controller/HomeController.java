@@ -2,7 +2,7 @@ package com.tomjerry.tom.jerry.controller;
 
 import com.tomjerry.tom.jerry.Season;
 import com.tomjerry.tom.jerry.SelectSeriesDto;
-import com.tomjerry.tom.jerry.service.StreamingService;
+import com.tomjerry.tom.jerry.service.CinemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.*;
 public class HomeController {
 
     @Autowired
-    private StreamingService streamingService;
+    private CinemaService cinemaService;
 
     @ModelAttribute
     public void addSeasons(Model model) {
-        model.addAttribute("allSeasons", streamingService.getAllSeasons());
+        model.addAttribute("allSeasons", cinemaService.getAllSeasons());
     }
 
     @RequestMapping("/tom&jerry")
@@ -25,7 +25,7 @@ public class HomeController {
             season = new SelectSeriesDto();
         }
 
-        Season currSeason = streamingService.getAllSeasons().get(Integer.parseInt(season.getSeason())-1);
+        Season currSeason = cinemaService.getAllSeasons().get(Integer.parseInt(season.getSeason())-1);
         model.addAttribute("currentSeason", currSeason);
         return "home";
     }

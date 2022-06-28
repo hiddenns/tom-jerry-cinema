@@ -15,20 +15,12 @@ public class Series {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
-    private int pos;
     private String path;
+    private int pos;
     private int season_id;
     private String description;
 
-    public Series(String name, String path, int pos){
-        this.name = name;
-        this.path = path;
-        this.pos = pos;
-    }
-
-    public Series(String name, String description, String path, int pos, int seasonId){
-        this.name = name;
+    public Series(String path, String description, int pos, int seasonId){
         this.path = path;
         this.description = description;
         this.pos = pos;
